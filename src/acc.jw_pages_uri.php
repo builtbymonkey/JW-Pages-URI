@@ -11,6 +11,17 @@ require PATH_THIRD.'jw_pages_uri/config.php';
  */
 class Jw_pages_uri_acc
 {
+    /**
+     * Enter the IDs of each channel you want to enable this for.
+     *
+     * NOTE: Enabling this for channels that aren't meant to (or don't
+     * exclusively) contain pages can cause edge-case issues as all entries
+     * from these channels will be added to the pages table.
+     */
+    private $channel_ids = array();
+
+    // -------------------------------------------------------------------------
+
     public $name        = JW_PAGES_URI_NAME;
     public $id          = JW_PAGES_URI_ID;
     public $version     = JW_PAGES_URI_VERSION;
@@ -35,6 +46,7 @@ class Jw_pages_uri_acc
         // Only add js when publishing a new entry to the `Pages` channel
         if (
             ee()->input->get_post('entry_id') === false
+         && in_array(ee()->input->get_post('channel_id'), $this->channel_ids)
          && ee()->input->get_post('C') === 'content_publish'
         ) {
             // Load in necessary js files
