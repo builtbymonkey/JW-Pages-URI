@@ -2,6 +2,21 @@
 
 Adds the functionality of Title URL to Pages URI
 
+## Usage
+
+**NOTE: This accessory will not work, until you complete the following.**
+
+Enabling for channels that aren't meant to (or don't exclusively) contain pages can cause edge-case issues as all entries from enabled channels will be made pages.
+
+To enable a channel, add its ID to the array in the beginning of `acc.jw_pages_uri.php`.
+```php
+private $channel_ids = array(1, 4);
+```
+
+Otherwise, you can add the IDs to a config variable in `config.php` (or your config bootstrap if you use one).
+```php
+$config['jw_pages_uri_channel_ids'] = array(1, 4);
+```
 
 ## License
 
