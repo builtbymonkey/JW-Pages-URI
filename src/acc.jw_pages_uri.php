@@ -31,6 +31,20 @@ class Jw_pages_uri_acc
     // -------------------------------------------------------------------------
 
     /**
+     * Constructor
+     */
+    public function __contruct()
+    {
+        $config_ids = ee()->config->item(JW_PAGES_URI_ID.'_channel_ids');
+
+        if ($config_ids) {
+            $this->config_ids = $config_ids;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+
+    /**
      * Set Sections
      *
      * Set content for the accessory
