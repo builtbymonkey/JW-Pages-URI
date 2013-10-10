@@ -8,3 +8,17 @@ if (!defined('JW_PAGES_URI_VERSION')) {
 
 $config['name'] = JW_PAGES_URI_NAME;
 $config['version'] = JW_PAGES_URI_VERSION;
+
+
+/**
+ * < EE 2.6.0 backward compat
+ */
+if ( ! function_exists('ee'))
+{
+    function ee()
+    {
+        static $EE;
+        if ( ! $EE) $EE = get_instance();
+        return $EE;
+    }
+}

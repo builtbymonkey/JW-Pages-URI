@@ -20,16 +20,6 @@ class Jw_pages_uri_acc
     // -------------------------------------------------------------------------
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->EE =& get_instance();
-    }
-
-    // -------------------------------------------------------------------------
-
-    /**
      * Set Sections
      *
      * Set content for the accessory
@@ -42,15 +32,17 @@ class Jw_pages_uri_acc
         // Hide accessory tab
         $this->sections[] = '<script type="text/javascript">$("#accessoryTabs a.jw_pages_uri").parent().remove();</script>';
 
-        // Only add js when publishing a new entry
-        if ($this->EE->input->get_post('entry_id') === false && $this->EE->input->get_post('C') === 'content_publish')
-        {
+        // Only add js when publishing a new entry to the `Pages` channel
+        if (
+            ee()->input->get_post('entry_id') === false
+         && ee()->input->get_post('C') === 'content_publish'
+        ) {
             // Load in necessary js files
-            $this->EE->cp->add_js_script(array(
+            ee()->cp->add_js_script(array(
                 'plugin' => array('ee_url_title')
             ));
 
-            $this->EE->javascript->output('
+            ee()->javascript->output('
                 $("#pages__pages_uri").val("");
 
                 $("#title").on("keyup keydown change", function() {
